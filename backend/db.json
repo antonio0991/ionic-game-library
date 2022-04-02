@@ -1,0 +1,20 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "antonio0991",
+            "senha": "abc123",
+            "games": [
+                {
+                    "id": 1,
+                    "nome": "Elden Ring",
+                    "imagem": "",
+                    "horas jogadas": 69.00,
+                    "genero": "RPG",
+                    "classificacao": "★★★★★",
+                    "sistemas": "Windows, SteamOS"
+                }
+            ]
+        }
+    ]
+}
