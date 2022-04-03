@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{modalName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="modal">
+    <ion-label>Nome</ion-label>
+    <ion-input [(ngModel)]="game.nome"></ion-input>
+    <ion-label>Classificação</ion-label>
+    <ion-select interface="popover" [(ngModel)]="game.classificacao" placeholder="Selecione a classificação do jogo">
+      <ion-select-option value="★">★</ion-select-option>
+      <ion-select-option value="★★">★★</ion-select-option>
+      <ion-select-option value="★★★">★★★</ion-select-option>
+      <ion-select-option value="★★★★">★★★★</ion-select-option>
+      <ion-select-option value="★★★★★">★★★★★</ion-select-option>
+    </ion-select>
+    <ion-label>Genero</ion-label>
+    <ion-input [(ngModel)]="game.genero"></ion-input>
+    <ion-label>Sistemas</ion-label>
+    <ion-input [(ngModel)]="game.sistemas"></ion-input>
+    <ion-label>Horas Jogadas</ion-label>
+    <ion-input [(ngModel)]="game.horas"></ion-input>
+    <ion-label>URL imagem</ion-label>
+    <ion-input [(ngModel)]="game.imagem"></ion-input>
+  </div>
+  <div class="botoes">
+    <ion-button color="danger" (click)="close()">Cancelar</ion-button>
+    <ion-button color="success" (click)="onSave()">Salvar</ion-button>
+  </div>
+</ion-content>

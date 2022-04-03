@@ -1,9 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-text>login</ion-text>
+  <div class="body">
+    <div class="input-container">
+      <img src="../../../assets/logo.png" height='120' width='120'>
+      <Strong>Insira seus dados de login</Strong>
+      <ion-input [(ngModel)]="login.username"></ion-input>
+      <ion-input [(ngModel)]="login.senha" type="password"></ion-input>
+      <ion-button (click)="onLogin()">Login</ion-button>
+    </div>
+  </div>
 </ion-content>

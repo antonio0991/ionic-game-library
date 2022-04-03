@@ -1,0 +1,41 @@
+ion-input {
+    width: 80%;
+    height: 40px;
+    background-color: #92949c;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+
+ion-select {
+    /* Applies to the value and placeholder color */
+    width: 60%;
+    height: 40px;
+    background-color: #92949c;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 15px;
+    text-align: center;
+    /* Set a different placeholder color */
+    --placeholder-color: white;
+
+    /* Set full opacity on the placeholder */
+    --placeholder-opacity: 1;
+}
+
+.modal {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.botoes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

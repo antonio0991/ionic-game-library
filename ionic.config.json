@@ -1,5 +1,10 @@
 {
   "name": "gameLibrary",
-  "integrations": {},
-  "type": "angular"
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "angularCompilerOptions": {
+    "strictTemplates": false
+  }
 }

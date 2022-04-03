@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: '/login',
     pathMatch: 'full',
   },
   {
@@ -27,6 +27,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/user-info/user-info.module').then(
         (m) => m.UserInfoPageModule
+      ),
+  },
+  {
+    path: 'modal-popover',
+    loadChildren: () =>
+      import('./pages/modal-popover/modal-popover.module').then(
+        (m) => m.ModalPopoverPageModule
       ),
   },
 ];

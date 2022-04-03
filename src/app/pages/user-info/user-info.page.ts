@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from './../../service/user.service';
+import { User } from './../../model/user';
 
 @Component({
   selector: 'app-user-info',
@@ -6,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-info.page.scss'],
 })
 export class UserInfoPage implements OnInit {
-
-  constructor() { }
+  user: User;
+  constructor(public service: UserService) {}
 
   ngOnInit() {
+    this.user = this.service.getLoggedUser();
   }
-
 }
