@@ -12,7 +12,7 @@ export class UserService {
   endpoint = 'http://localhost:3000/users/';
   usuarioLogado: User;
 
-  constructor(public http: HttpClient, private gameService: GameService) {}
+  constructor(public http: HttpClient) {}
 
   public getUser(username: string): Observable<User> {
     return this.http.get<User>(this.endpoint + username);
@@ -30,6 +30,13 @@ export class UserService {
     this.usuarioLogado.idade = Math.floor(
       timeDiff / (1000 * 3600 * 24) / 365.25
     );
-    this.gameService.setGames(this.usuarioLogado.games);
+  }
+
+  public setUser (user:User) : Observable<User>{
+    return this.http.post<User>(this.endpoint, user);
+  }
+
+  public editUser (user : User) : Observable<User>{
+    return this.http.put<User>(`${this.endpoint}${user.id}`, user);
   }
 }

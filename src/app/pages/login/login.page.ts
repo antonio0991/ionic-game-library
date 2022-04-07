@@ -3,6 +3,7 @@ import { UserService } from '../../service/user.service';
 import { Game } from './../../model/game';
 import { AlertController, ModalController, NavParams } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { RegisterComponent } from 'src/app/component/register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   games = new Array<Game>();
   login: any = { username: '', senha: '' };
+  modalDataResponse: any;
 
   constructor(
     private service: UserService,
@@ -32,11 +34,27 @@ export class LoginPage implements OnInit {
 
     const { role } = await alert.onDidDismiss();
   }
+  async addUser() {
+    const modal = await this.modalCtrl.create({
+      component: RegisterComponent,
+      componentProps: {
+        game: new Game(),
+        modalName: 'Cadastre-se',
+      },
+    });
+
+    modal.onDidDismiss().then((modalDataResponse) => {
+      if (modalDataResponse !== null) {
+        this.modalDataResponse = modalDataResponse.data;
+      }
+    });
+
+    return await modal.present();
+  }
 
   onLogin() {
     this.service.getUser(this.login.username).subscribe(
       (response) => {
-        this.games = response.games;
         //TODO: VALIDAR SENHA NO BACKEND
         if (response.senha === this.login.senha) {
           this.route.navigate(['/home']);

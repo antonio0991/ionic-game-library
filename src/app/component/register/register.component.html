@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{modalName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="modal">
+    <ion-label>Nome</ion-label>
+    <ion-input [(ngModel)]="user.id"></ion-input>
+    <ion-label>Data de nascimento</ion-label>
+    <ion-datetime max="2022" min="1910" [(ngModel)]="user.dtNasc" display-format="MMM DD, YYYY"></ion-datetime>
+    <ion-label>CPF</ion-label>
+    <ion-input [(ngModel)]="user.cpf"></ion-input>
+    <ion-label>Endereço</ion-label>
+    <ion-input [(ngModel)]="user.endereco"></ion-input>
+    <ion-label>URL foto de perfil</ion-label>
+    <ion-input [(ngModel)]="user.foto"></ion-input>
+    <ion-label>Senha</ion-label>
+    <ion-input [(ngModel)]="user.senha"></ion-input>
+  </div>
+  <div class="botoes">
+    <ion-button color="danger" (click)="close()">Cancelar</ion-button>
+    <ion-button color="success" (click)="setUser()">Salvar</ion-button>
+  </div>
+</ion-content>

@@ -2,7 +2,7 @@ import { Game } from './game';
 export class User {
   id: string;
   senha: string;
-  games: Game[];
+  games: number[];
   cpf: string;
   foto: string;
   endereco: string;
@@ -10,13 +10,13 @@ export class User {
   dtNasc: Date;
 
   constructor(
-    id: string,
-    senha: string,
-    games: Game[],
-    cpf: string,
-    foto: string,
-    endereco: string,
-    dtNasc: Date
+    id?: string,
+    senha?: string,
+    games?: number[],
+    cpf?: string,
+    foto?: string,
+    endereco?: string,
+    dtNasc?: Date
   ) {
     this.id = id;
     this.senha = senha;

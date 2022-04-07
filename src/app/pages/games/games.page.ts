@@ -4,6 +4,7 @@ import { Game } from './../../model/game';
 import { AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { ModalPopoverPage } from '../modal-popover/modal-popover.page';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-games',
@@ -12,15 +13,15 @@ import { ModalPopoverPage } from '../modal-popover/modal-popover.page';
 })
 export class GamesPage implements OnInit {
   modalDataResponse: any;
-  games: Game[];
+  games: Game[] = [];
+  gamesId: number[] = [];
 
   constructor(
-    private gameService: GameService,
+    private userService: UserService,
     public alertController: AlertController,
-    private modalCtrl: ModalController
-  ) {
-    this.games = gameService.getGames();
-  }
+    private modalCtrl: ModalController,
+    private service : GameService
+  ) {}
 
   async onEdit(selectedGame: Game) {
     const modal = await this.modalCtrl.create({
@@ -52,6 +53,7 @@ export class GamesPage implements OnInit {
     modal.onDidDismiss().then((modalDataResponse) => {
       if (modalDataResponse !== null) {
         this.modalDataResponse = modalDataResponse.data;
+        this.loadGames();
       }
     });
 
@@ -71,7 +73,18 @@ export class GamesPage implements OnInit {
     const { role } = await alert.onDidDismiss();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadGames();
+  }
+
+  private loadGames() {
+    this.gamesId = this.userService.getLoggedUser().games;
+    var games : Game[] = [];
+    this.gamesId.forEach(id => {
+      this.service.loadGames(id).subscribe(res => games.push(res));
+    });
+    this.games = games;
+  }
 
   //TODO: implementar DELETE
   onDelete(id: number) {

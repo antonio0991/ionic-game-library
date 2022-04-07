@@ -1,77 +1,99 @@
 {
-    "users": [
-        {
-            "id": "antonio0991",
-            "senha": "abc123",
-            "cpf": "12882206429",
-            "foto": "data:image/jpeg;base64,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",
-            "endereco": "Ana de Azevedo 261 - Campina Grande - PB",
-            "dtNasc": "1999-10-07",
-            "games": [
-                {
-                    "id": 1,
-                    "nome": "Elden Ring",
-                    "imagem": "https://tm.ibxk.com.br/2021/11/09/09191733039114.jpg?ims=1200x675",
-                    "horas": 69.00,
-                    "genero": "RPG",
-                    "classificacao": "★★★★★",
-                    "sistemas": "Windows, SteamOS"
-                },
-                {
-                    "id": 2,
-                    "nome": "Cyberpunk 2077",
-                    "imagem": "https://www.ultimaficha.com.br/wp-content/uploads/2021/11/12aaa3b137a18e180bb92682e8f81674dcb7451f-1280x720-1.jpg",
-                    "horas": 420.69,
-                    "genero": "RPG, Ação e Aventura",
-                    "classificacao": "★★★",
-                    "sistemas": "Windows"
-                },
-                {
-                    "id": 3,
-                    "nome": "Dark Souls 3",
-                    "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/374320/capsule_616x353.jpg?t=1638193506",
-                    "horas": 300.51,
-                    "genero": "RPG",
-                    "classificacao": "★★★★",
-                    "sistemas": "Windows"
-                },
-                {
-                    "id": 4,
-                    "nome": "Brawhalla",
-                    "imagem": "https://play-lh.googleusercontent.com/CbjuUftiwUVIabFFXgxXCXhzg9ZFO7rpf8ytSTyTitF6SC2SN-pWXkqAEcxbR9w93Dk",
-                    "horas": 50.84,
-                    "genero": "Luta",
-                    "classificacao": "★★★★★",
-                    "sistemas": "Windows, Linux"
-                },
-                {
-                    "id": 5,
-                    "nome": "Civilization VI",
-                    "imagem": "https://cdn1.epicgames.com/cd14dcaa4f3443f19f7169a980559c62/offer/EGS_SidMeiersCivilizationVI_FiraxisGames_S1-2560x1440-2fcd1c150ac6d8cdc672ae042d2dd179.jpg",
-                    "horas": 105.25,
-                    "genero": "Estratégia",
-                    "classificacao": "★★★★★",
-                    "sistemas": "Windows, Linux"
-                },
-                {
-                    "id": 6,
-                    "nome": "Cities: Skylines",
-                    "imagem": "https://cdn2.unrealengine.com/egs-citiesskylines-colossalorder-s5-1920x1080-689706625.jpg",
-                    "horas": 42.35,
-                    "genero": "Estratégia, Simulação",
-                    "classificacao": "★★★★★",
-                    "sistemas": "Windows, Linux"
-                },
-                {
-                    "id": 7,
-                    "nome": "Stardew Valley",
-                    "imagem": "https://assets.nintendo.com/image/upload/c_fill,f_auto,q_auto,w_1200/v1/ncom/en_US/games/switch/s/stardew-valley-switch/hero",
-                    "horas": 900.85,
-                    "genero": "RPG",
-                    "classificacao": "★★★★★",
-                    "sistemas": "Windows, Linux, MacOS"
-                }
-            ]
-        }
-    ]
+  "users": [
+    {
+      "id": "antonio0991",
+      "senha": "abc123",
+      "cpf": "12882206429",
+      "foto": "data:image/jpeg;base64,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",
+      "endereco": "Ana de Azevedo 261 - Campina Grande - PB",
+      "dtNasc": "1999-10-07",
+      "games": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "batotow",
+      "senha": "macaco",
+      "cpf": "12230315439",
+      "foto": "https://pbs.twimg.com/profile_images/1162710956218245120/L4b1guuv_400x400.jpg",
+      "endereco": "R. Sebastião Viêira da Silva",
+      "dtNasc": "2019-10-09T18:07:00-03:00",
+      "games": [
+        2,
+        3,
+        4,
+        7,
+        6,
+        5
+      ],
+      "idade": 2
+    }
+  ],
+  "games": [
+    {
+      "id": 1,
+      "nome": "Elden Ring",
+      "imagem": "https://tm.ibxk.com.br/2021/11/09/09191733039114.jpg?ims=1200x675",
+      "horas": 69,
+      "genero": "RPG",
+      "classificacao": "★★★★★",
+      "sistemas": "Windows, SteamOS"
+    },
+    {
+      "id": 2,
+      "nome": "Cyberpunk 2077",
+      "imagem": "https://www.ultimaficha.com.br/wp-content/uploads/2021/11/12aaa3b137a18e180bb92682e8f81674dcb7451f-1280x720-1.jpg",
+      "horas": 420.69,
+      "genero": "RPG, Ação e Aventura",
+      "classificacao": "★★★",
+      "sistemas": "Windows"
+    },
+    {
+      "id": 3,
+      "nome": "Dark Souls 3",
+      "imagem": "https://cdn.akamai.steamstatic.com/steam/apps/374320/capsule_616x353.jpg?t=1638193506",
+      "horas": 300.51,
+      "genero": "RPG",
+      "classificacao": "★★★★",
+      "sistemas": "Windows"
+    },
+    {
+      "id": 4,
+      "nome": "Brawhalla",
+      "imagem": "https://play-lh.googleusercontent.com/CbjuUftiwUVIabFFXgxXCXhzg9ZFO7rpf8ytSTyTitF6SC2SN-pWXkqAEcxbR9w93Dk",
+      "horas": 50.84,
+      "genero": "Luta",
+      "classificacao": "★★★★★",
+      "sistemas": "Windows, Linux"
+    },
+    {
+      "id": 5,
+      "nome": "Civilization VI",
+      "imagem": "https://cdn1.epicgames.com/cd14dcaa4f3443f19f7169a980559c62/offer/EGS_SidMeiersCivilizationVI_FiraxisGames_S1-2560x1440-2fcd1c150ac6d8cdc672ae042d2dd179.jpg",
+      "horas": 105.25,
+      "genero": "Estratégia",
+      "classificacao": "★★★★★",
+      "sistemas": "Windows, Linux"
+    },
+    {
+      "id": 6,
+      "nome": "Cities: Skylines",
+      "imagem": "https://cdn2.unrealengine.com/egs-citiesskylines-colossalorder-s5-1920x1080-689706625.jpg",
+      "horas": 42.35,
+      "genero": "Estratégia, Simulação",
+      "classificacao": "★★★★★",
+      "sistemas": "Windows, Linux"
+    },
+    {
+      "id": 7,
+      "nome": "Stardew Valley",
+      "imagem": "https://assets.nintendo.com/image/upload/c_fill,f_auto,q_auto,w_1200/v1/ncom/en_US/games/switch/s/stardew-valley-switch/hero",
+      "horas": 900.85,
+      "genero": "RPG",
+      "classificacao": "★★★★★",
+      "sistemas": "Windows, Linux, MacOS"
+    }
+  ]
 }
