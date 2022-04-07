@@ -33,6 +33,7 @@
     "ion2-calendar": "^3.5.0",
     "ionic-long-press": "^2.0.3",
     "moment": "^2.29.2",
+    "ngx-mask": "^13.1.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

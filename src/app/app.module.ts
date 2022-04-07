@@ -11,6 +11,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalPopoverPageRoutingModule } from './pages/modal-popover/modal-popover-routing.module';
+import { NgxMaskModule, MaskPipe } from 'ngx-mask';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,9 +24,11 @@ import { ModalPopoverPageRoutingModule } from './pages/modal-popover/modal-popov
     CommonModule,
     FormsModule,
     IonicModule,
-    ModalPopoverPageRoutingModule
+    ModalPopoverPageRoutingModule,
+    NgxMaskModule.forRoot(),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    MaskPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

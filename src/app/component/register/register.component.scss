@@ -1,0 +1,18 @@
+#form{
+  ion-label{
+    display: block;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+  }
+  ion-input{
+    border: 1px solid rgb(20, 65, 189);
+    border-radius: 5%;
+    margin: 0 2% 0 3%;
+    width: 95%;
+  }
+  .botoes{
+    margin-top: 20px;
+    text-align: right;
+  }
+}

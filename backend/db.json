@@ -29,6 +29,18 @@
         5
       ],
       "idade": 2
+    },
+    {
+      "id": "Gui",
+      "senha": "123",
+      "games": [
+        3
+      ],
+      "cpf": "111.111.111-11",
+      "foto": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fs2.glbimg.com%2FQWidveoXIJ7H-WzYEbLxmLBJn1o%3D%2F0x0%3A1280x720%2F984x0%2Fsmart%2Ffilters%3Astrip_icc()%2Fi.s3.glbimg.com%2Fv1%2FAUTH_e84042ef78cb4708aeebdf1c68c6cbd6%2Finternal_photos%2Fbs%2F2020%2F4%2FB%2FQOOstfQqOCruI79wOAlQ%2Fwhatsapp-image-2020-05-17-at-19.00.54.jpeg&imgrefurl=https%3A%2F%2Fgshow.globo.com%2Fprogramas%2Fdomingao-do-faustao%2Fnoticia%2Fmaior-jacare-do-mundo-vive-na-amazonia-e-pode-chegar-a-5-metros-de-comprimento.ghtml&tbnid=MQsRVAKkWyt40M&vet=12ahUKEwiA7MOrkYP3AhWXNLkGHYwaADgQMygEegUIARDeAQ..i&docid=fSfxvw2nXZbdqM&w=984&h=554&q=jacare&ved=2ahUKEwiA7MOrkYP3AhWXNLkGHYwaADgQMygEegUIARDeAQ",
+      "endereco": "asdasd",
+      "dtNasc": "2022-04-15T20:45:00-03:00",
+      "idade": 0
     }
   ],
   "games": [

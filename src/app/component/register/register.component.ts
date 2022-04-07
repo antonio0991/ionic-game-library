@@ -1,3 +1,4 @@
+import { MaskPipe } from 'ngx-mask';
 import { Component, Input, OnInit } from '@angular/core';
 import { CalendarOriginal } from '@awesome-cordova-plugins/calendar';
 import { ModalController } from '@ionic/angular';
@@ -19,17 +20,21 @@ export class RegisterComponent implements OnInit {
   @Input() onSave;
 
   constructor(private modalCtrl: ModalController,
-              private userService: UserService){}
+              private userService: UserService, private maskPipe: MaskPipe){}
   async close() {
     const closeModal = 'Modal Closed';
     await this.modalCtrl.dismiss(closeModal);
   }
 
-  public setUser() : void{
+  public setUser(): void{
     this.user.games = [];
     this.userService.setUser(this.user).subscribe( res =>
       this.close()
     );
+  }
+
+  updateWithMask(event) {
+    this.user.cpf = this.maskPipe.transform(event.currentTarget.value, '000.000.000-00');
   }
 
   ngOnInit() {}

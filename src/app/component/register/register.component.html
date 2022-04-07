@@ -4,14 +4,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content id="form">
   <div class="modal">
     <ion-label>Nome</ion-label>
     <ion-input [(ngModel)]="user.id"></ion-input>
     <ion-label>Data de nascimento</ion-label>
     <ion-datetime max="2022" min="1910" [(ngModel)]="user.dtNasc" display-format="MMM DD, YYYY"></ion-datetime>
     <ion-label>CPF</ion-label>
-    <ion-input [(ngModel)]="user.cpf"></ion-input>
+    <ion-input (ionChange)="updateWithMask($event)" [(ngModel)]="user.cpf"></ion-input>
     <ion-label>Endereço</ion-label>
     <ion-input [(ngModel)]="user.endereco"></ion-input>
     <ion-label>URL foto de perfil</ion-label>
