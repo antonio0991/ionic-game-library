@@ -14,7 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './component/register/register.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalPopoverPageRoutingModule } from './pages/modal-popover/modal-popover-routing.module';
 import { NgxMaskModule, MaskPipe } from 'ngx-mask';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -23,7 +23,11 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from './../environments/environment';
-
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
+import { AuthService } from './service/auth.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -37,15 +41,19 @@ import { environment } from './../environments/environment';
     IonicModule,
     ModalPopoverPageRoutingModule,
     NgxMaskModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    provideFirebaseApp( () => initializeApp(environment.firebaseConfig)),
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
+    ReactiveFormsModule,
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    MaskPipe,
+    MaskPipe, AuthService,
   ],
   bootstrap: [AppComponent],
 })
