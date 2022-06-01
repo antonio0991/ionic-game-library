@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { Game } from './../../model/game';
@@ -19,7 +20,8 @@ export class LoginPage implements OnInit {
     private service: UserService,
     public alertController: AlertController,
     private route: Router,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private authService: AuthService
   ) {}
 
   async presentAlert() {
@@ -53,15 +55,9 @@ export class LoginPage implements OnInit {
   }
 
   onLogin() {
-    this.service.getUser(this.login.username).subscribe(
-      (response) => {
-        //TODO: VALIDAR SENHA NO BACKEND
-        if (response.senha === this.login.senha) {
+    this.authService.login(this.login.username, this.login.senha).then(
+      () => {
           this.route.navigate(['/home']);
-          this.service.setLoggedUser(response);
-        } else {
-          this.presentAlert();
-        }
       },
       (error) => {
         if (error.status === 404) {

@@ -5,39 +5,38 @@
 </ion-header>
 
 <ion-content id="form">
- 
-  <!--<ion-content class="ion-padding">
-    <form (ngSubmit)="login()" [formGroup]="credentials">
+
+  <form [formGroup]="credentials">
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+      <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Email is invalid</ion-note>
+    </ion-item>
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+      <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">Password needs to be 6
+        characters</ion-note>
+    </ion-item>
+    <div class="modal">
       <ion-item fill="solid" class="ion-margin-bottom">
-        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
-        <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Email is invalid</ion-note>
+        <ion-input placeholder="Nome"  formControlName="nome"></ion-input>
       </ion-item>
       <ion-item fill="solid" class="ion-margin-bottom">
-        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-        <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">Password needs to be 6 characters</ion-note>
+        <ion-datetime placeholder="Data de nascimento" max="2022" min="1910" formControlName="dtNasc"
+          display-format="MMM DD, YYYY"></ion-datetime>
       </ion-item>
-   
-      <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Log in</ion-button>
-      <ion-button type="button" expand="block" color="secondary" (click)="register()">Create account</ion-button>
-    </form>
-  </ion-content>-->
-  
-  <div class="modal">
-    <ion-label>Nome</ion-label>
-    <ion-input [(ngModel)]="user.id"></ion-input>
-    <ion-label>Data de nascimento</ion-label>
-    <ion-datetime max="2022" min="1910" [(ngModel)]="user.dtNasc" display-format="MMM DD, YYYY"></ion-datetime>
-    <ion-label>CPF</ion-label>
-    <ion-input (ionChange)="updateWithMask($event)" [(ngModel)]="user.cpf"></ion-input>
-    <ion-label>Endereço</ion-label>
-    <ion-input [(ngModel)]="user.endereco"></ion-input>
-    <ion-label>URL foto de perfil</ion-label>
-    <ion-input [(ngModel)]="user.foto"></ion-input>
-    <ion-label>Senha</ion-label>
-    <ion-input [(ngModel)]="user.senha"></ion-input>
-  </div>
-  <div class="botoes">
-    <ion-button color="danger" (click)="close()">Cancelar</ion-button>
-    <ion-button color="success" (click)="setUser()">Salvar</ion-button>
-  </div>
+      <ion-item fill="solid" class="ion-margin-bottom">
+        <ion-input placeholder="CPF" (ionChange)="updateWithMask($event)" formControlName="cpf"></ion-input>
+      </ion-item>
+      <ion-item fill="solid" class="ion-margin-bottom">
+        <ion-input placeholder="Endereço" formControlName="endereco"></ion-input>
+      </ion-item>
+      <ion-item fill="solid" class="ion-margin-bottom">
+        <ion-input placeholder="URL foto de perfil" formControlName="foto"></ion-input>
+      </ion-item>
+    </div>
+    <div class="botoes">
+      <ion-button color="danger" (click)="close()">Cancelar</ion-button>
+      <ion-button color="success" (click)="register()">Salvar</ion-button>
+    </div>
+  </form>
 </ion-content>

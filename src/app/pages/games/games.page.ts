@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../../service/game.service';
 import { Game } from './../../model/game';
@@ -20,7 +21,8 @@ export class GamesPage implements OnInit {
     private userService: UserService,
     public alertController: AlertController,
     private modalCtrl: ModalController,
-    private service : GameService
+    private service: GameService,
+    private authService: AuthService
   ) {}
 
   async onEdit(selectedGame: Game) {
@@ -77,17 +79,17 @@ export class GamesPage implements OnInit {
     this.loadGames();
   }
 
+  onDelete() {
+    this.presentAlert();
+  }
+
   private loadGames() {
-    this.gamesId = this.userService.getLoggedUser().games;
-    var games : Game[] = [];
+    this.gamesId = this.authService.getLoggedUser().games;
+    const games: Game[] = [];
     this.gamesId.forEach(id => {
       this.service.loadGames(id).subscribe(res => games.push(res));
     });
     this.games = games;
   }
 
-  //TODO: implementar DELETE
-  onDelete(id: number) {
-    this.presentAlert();
-  }
 }

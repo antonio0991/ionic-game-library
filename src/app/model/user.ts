@@ -1,6 +1,7 @@
 import { Game } from './game';
 export class User {
   id: string;
+  email: string;
   senha: string;
   games: number[];
   cpf: string;
@@ -11,6 +12,7 @@ export class User {
 
   constructor(
     id?: string,
+    email?: string,
     senha?: string,
     games?: number[],
     cpf?: string,
@@ -19,6 +21,7 @@ export class User {
     dtNasc?: Date
   ) {
     this.id = id;
+    this.email = email;
     this.senha = senha;
     this.games = games;
     this.cpf = cpf;

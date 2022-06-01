@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth.service';
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { alertController } from '@ionic/core';
@@ -14,13 +15,16 @@ export class ModalPopoverPage implements OnInit {
   @Input() game: Game = new Game();
   @Input() modalName;
   @Input() onSave;
-  public games:Game[] = [];
-  public gameId : number;
 
-  constructor(private modalCtrl: ModalController,
+  public games: Game[] = [];
+  public gameId: number;
+
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  constructor(public alertController: AlertController,
+              private modalCtrl: ModalController,
               private gameService: GameService,
               private userService: UserService,
-              public alertController: AlertController){}
+              private authService: AuthService,){}
 
   async close() {
     const closeModal = 'Modal Closed';
@@ -29,12 +33,13 @@ export class ModalPopoverPage implements OnInit {
 
   loadGames() {
     this.gameService.getAllGames().subscribe( res => this.games = res);
-  } 
+  }
 
   addUserGame(){
-    this.userService.getLoggedUser().games.push(this.gameId);
-    this.userService.editUser(this.userService.getLoggedUser()).subscribe(res => this.userService.getLoggedUser().games = res.games);
-    this.presentAlert()
+    this.authService.getLoggedUser().games.push(this.gameId);
+    this.userService.editUser(this.authService.getLoggedUser());
+    this.authService.setUser(this.authService.getLoggedUser().email);
+    this.presentAlert();
     this.close();
   }
 
@@ -49,7 +54,7 @@ export class ModalPopoverPage implements OnInit {
 
     const { role } = await alert.onDidDismiss();
   }
-  
+
   ngOnInit() {
     this.loadGames();
   }

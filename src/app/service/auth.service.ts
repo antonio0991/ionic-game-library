@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/service/user.service';
 import { Injectable } from '@angular/core';
 import {
   Auth,
@@ -5,13 +6,15 @@ import {
   createUserWithEmailAndPassword,
   signOut
 } from '@angular/fire/auth';
- 
+import { User } from '../model/user';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private auth: Auth) {}
- 
+  usuarioLogado: User;
+  constructor(private auth: Auth, private userService: UserService) {}
+
   async register({ email, password }) {
     try {
       const user = await createUserWithEmailAndPassword(
@@ -24,17 +27,36 @@ export class AuthService {
       return null;
     }
   }
- 
-  async login({ email, password }) {
+
+  async login(email, password) {
     try {
       const user = await signInWithEmailAndPassword(this.auth, email, password);
+      this.setUser(email);
       return user;
     } catch (e) {
       return null;
     }
   }
- 
+
+  setUser(email){
+    this.userService.getUserByEmail(email).get().subscribe((u) => this.usuarioLogado = u.data());
+    this.setIdade();
+  }
+
+  setIdade(){
+    const timeDiff = Math.abs(
+      Date.now() - new Date(this.usuarioLogado.dtNasc).getTime()
+    );
+    this.usuarioLogado.idade = Math.floor(
+      timeDiff / (1000 * 3600 * 24) / 365.25
+    );
+  }
+
   logout() {
     return signOut(this.auth);
+  }
+
+  public getLoggedUser() {
+    return this.usuarioLogado;
   }
 }

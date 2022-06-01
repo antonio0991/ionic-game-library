@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../service/user.service';
 import { User } from './../../model/user';
@@ -9,7 +10,7 @@ import { User } from './../../model/user';
 })
 export class UserInfoPage implements OnInit {
   user: User;
-  constructor(public service: UserService) {}
+  constructor(public service: AuthService) {}
 
   ngOnInit() {
     this.user = this.service.getLoggedUser();

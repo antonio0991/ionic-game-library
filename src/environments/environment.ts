@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: '???',
-    authDomain: '???',
-    databaseURL: '???',
-    projectId: '???',
-    sotrageBucket: '???',
-    messagingSenderId: '???',
-    appId: '???',
-    measurementId: '???',
+    apiKey: 'AIzaSyDFaS7G1PgfS7F__2kzzIaCL1anJv8MTxA',
+    authDomain: 'gamelibraryv2.firebaseapp.com',
+    databaseURL: 'https://gamelibraryv2-default-rtdb.firebaseio.com',
+    projectId: 'gamelibraryv2',
+    sotrageBucket: 'gamelibraryv2.appspot.com',
+    messagingSenderId: '633410864543',
+    appId: '1:633410864543:web:7419dc9977849c9be4e9aa',
+    measurementId: 'G-B52LKN2B3E',
   },
 };
 

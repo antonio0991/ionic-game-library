@@ -17,39 +17,57 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  user: User = new User();
   @Input() modalName;
   @Input() onSave;
+
+  user: User = new User();
   credentials: FormGroup;
 
   constructor(private modalCtrl: ModalController,private fb: FormBuilder,
               private userService: UserService, private maskPipe: MaskPipe,
               private authService: AuthService){}
-  async close() {
-    const closeModal = 'Modal Closed';
-    await this.modalCtrl.dismiss(closeModal);
+
+   get email() {
+    return this.credentials.get('email');
   }
 
-  public setUser(): void{
-    this.user.games = [];
-    this.userService.setUser(this.user).subscribe( res =>
-      this.close()
-    );
-  }
-
-  updateWithMask(event) {
-    this.user.cpf = this.maskPipe.transform(event.currentTarget.value, '000.000.000-00');
-  }
-
-  async register(){
-    const user = await this.authService.register(this.credentials.value);
+  get password() {
+    return this.credentials.get('password');
   }
 
   ngOnInit() {
     this.credentials = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      nome: ['', [Validators.required]],
+      dtNasc: ['', [Validators.required]],
+      cpf: ['', [Validators.required, Validators.minLength(11)]],
+      endereco: ['', [Validators.required]],
+      foto: ['', [Validators.required]]
     });
   }
+
+  async close() {
+    const closeModal = 'Modal Closed';
+    await this.modalCtrl.dismiss(closeModal);
+  }
+
+  public setUser(): void{
+    this.user = this.credentials.value;
+    this.user.games = [];
+    this.userService.save(this.user).then( res =>
+      this.close()
+    );
+  }
+
+  updateWithMask(event) {
+    this.credentials.controls.cpf.setValue(this.maskPipe.transform(event.currentTarget.value, '000.000.000-00'));
+  }
+
+  async register(){
+    const user = await this.authService.register({email: this.email, password: this.password});
+    this.setUser();
+  }
+
 
 }
