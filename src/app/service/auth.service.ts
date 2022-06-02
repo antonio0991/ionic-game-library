@@ -41,11 +41,9 @@ export class AuthService {
     }
   }
 
-  setUser(email) {
-    this.userService
-      .getUserByEmail(email)
-      .get()
-      .subscribe((u) => (this.usuarioLogado = u.data()));
+  setUser(email){
+    this.userService.getUserByEmail(email)
+    .subscribe((res) => this.usuarioLogado = res[0]);
     this.setIdade();
   }
 

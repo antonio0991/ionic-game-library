@@ -9,6 +9,7 @@ export class User {
   endereco: string;
   idade: number;
   dtNasc: Date;
+  nome: string;
 
   constructor(
     id?: string,
@@ -18,7 +19,8 @@ export class User {
     cpf?: string,
     foto?: string,
     endereco?: string,
-    dtNasc?: Date
+    dtNasc?: Date,
+    nome?: string,
   ) {
     this.id = id;
     this.email = email;
@@ -28,5 +30,6 @@ export class User {
     this.foto = foto;
     this.endereco = endereco;
     this.dtNasc = dtNasc;
+    this.nome = nome;
   }
 }

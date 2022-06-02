@@ -49,9 +49,8 @@ export class UserService {
     return this.firestore.collection(this.path).snapshotChanges();
   }
 
-  getUserByEmail(emailBusca: string){
-    console.log(emailBusca);
-    return this.firestore.collection(this.path,ref=>ref.where('email','==',emailBusca)).doc<User>();
+  getUserByEmail(emailBusca: string): Observable<User[]>{
+    return this.firestore.collection<User>(this.path,ref=>ref.where('email','==',emailBusca)).valueChanges();
   }
 
   editUser(usuario: User){

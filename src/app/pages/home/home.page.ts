@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth.service';
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from './../../service/user.service';
