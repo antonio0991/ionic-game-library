@@ -3,7 +3,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CalendarOriginal } from '@awesome-cordova-plugins/calendar';
 import { ModalController } from '@ionic/angular';
 import { modalController } from '@ionic/core';
-import { CalendarComponentOptions, CalendarModal, CalendarModalOptions, CalendarResult } from 'ion2-calendar';
+import {
+  CalendarComponentOptions,
+  CalendarModal,
+  CalendarModalOptions,
+  CalendarResult,
+} from 'ion2-calendar';
 import { Game } from 'src/app/model/game';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/service/user.service';
@@ -16,18 +21,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-
   @Input() modalName;
   @Input() onSave;
 
   user: User = new User();
   credentials: FormGroup;
 
-  constructor(private modalCtrl: ModalController,private fb: FormBuilder,
-              private userService: UserService, private maskPipe: MaskPipe,
-              private authService: AuthService){}
+  constructor(
+    private modalCtrl: ModalController,
+    private fb: FormBuilder,
+    private userService: UserService,
+    private maskPipe: MaskPipe,
+    private authService: AuthService
+  ) {}
 
-   get email() {
+  get email() {
     return this.credentials.get('email');
   }
 
@@ -43,7 +51,7 @@ export class RegisterComponent implements OnInit {
       dtNasc: ['', [Validators.required]],
       cpf: ['', [Validators.required, Validators.minLength(11)]],
       endereco: ['', [Validators.required]],
-      foto: ['', [Validators.required]]
+      foto: ['', [Validators.required]],
     });
   }
 
@@ -52,22 +60,23 @@ export class RegisterComponent implements OnInit {
     await this.modalCtrl.dismiss(closeModal);
   }
 
-  public setUser(): void{
+  public setUser(): void {
     this.user = this.credentials.value;
     this.user.games = [];
-    this.userService.save(this.user).then( res =>
-      this.close()
-    );
+    this.userService.save(this.user).then((res) => this.close());
   }
 
   updateWithMask(event) {
-    this.credentials.controls.cpf.setValue(this.maskPipe.transform(event.currentTarget.value, '000.000.000-00'));
+    this.credentials.controls.cpf.setValue(
+      this.maskPipe.transform(event.currentTarget.value, '000.000.000-00')
+    );
   }
 
-  async register(){
-    const user = await this.authService.register({email: this.email, password: this.password});
+  async register() {
+    const user = await this.authService.register({
+      email: this.email.value,
+      password: this.password.value,
+    });
     this.setUser();
   }
-
-
 }

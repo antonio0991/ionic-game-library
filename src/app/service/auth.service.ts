@@ -4,7 +4,8 @@ import {
   Auth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  signOut
+  signOut,
+  getAuth,
 } from '@angular/fire/auth';
 import { User } from '../model/user';
 
@@ -13,7 +14,9 @@ import { User } from '../model/user';
 })
 export class AuthService {
   usuarioLogado: User;
-  constructor(private auth: Auth, private userService: UserService) {}
+  constructor(private auth: Auth, private userService: UserService) {
+    auth = getAuth();
+  }
 
   async register({ email, password }) {
     try {
@@ -38,12 +41,15 @@ export class AuthService {
     }
   }
 
-  setUser(email){
-    this.userService.getUserByEmail(email).get().subscribe((u) => this.usuarioLogado = u.data());
+  setUser(email) {
+    this.userService
+      .getUserByEmail(email)
+      .get()
+      .subscribe((u) => (this.usuarioLogado = u.data()));
     this.setIdade();
   }
 
-  setIdade(){
+  setIdade() {
     const timeDiff = Math.abs(
       Date.now() - new Date(this.usuarioLogado.dtNasc).getTime()
     );

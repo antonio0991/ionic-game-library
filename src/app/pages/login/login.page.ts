@@ -57,7 +57,7 @@ export class LoginPage implements OnInit {
   onLogin() {
     this.authService.login(this.login.username, this.login.senha).then(
       () => {
-          this.route.navigate(['/home']);
+        this.route.navigate(['/home']);
       },
       (error) => {
         if (error.status === 404) {
