@@ -50,6 +50,7 @@ export class UserService {
   }
 
   getUserByEmail(emailBusca: string){
+    console.log(emailBusca);
     return this.firestore.collection(this.path,ref=>ref.where('email','==',emailBusca)).doc<User>();
   }
 

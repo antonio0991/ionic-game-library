@@ -6,6 +6,7 @@ import { AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { ModalPopoverPage } from '../modal-popover/modal-popover.page';
 import { UserService } from 'src/app/service/user.service';
+import { GameFirebaseService } from 'src/app/service/shared/game-firebase.service';
 
 @Component({
   selector: 'app-games',
@@ -14,7 +15,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class GamesPage implements OnInit {
   modalDataResponse: any;
-  games: Game[] = [];
+  games;
   gamesId: number[] = [];
 
   constructor(
@@ -22,6 +23,7 @@ export class GamesPage implements OnInit {
     public alertController: AlertController,
     private modalCtrl: ModalController,
     private service: GameService,
+    private gameFirebase: GameFirebaseService,
     private authService: AuthService
   ) {}
 
@@ -84,12 +86,13 @@ export class GamesPage implements OnInit {
   }
 
   private loadGames() {
-    this.gamesId = this.authService.getLoggedUser().games;
+   /* this.gamesId = this.authService.getLoggedUser().games;
     const games: Game[] = [];
     this.gamesId.forEach(id => {
       this.service.loadGames(id).subscribe(res => games.push(res));
     });
-    this.games = games;
+    this.games = games;*/
+    this.games = this.service.getAll();
   }
 
 }

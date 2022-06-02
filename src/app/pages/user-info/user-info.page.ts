@@ -9,7 +9,7 @@ import { User } from './../../model/user';
   styleUrls: ['./user-info.page.scss'],
 })
 export class UserInfoPage implements OnInit {
-  user: User;
+  private user;
   constructor(public service: AuthService) {}
 
   ngOnInit() {
