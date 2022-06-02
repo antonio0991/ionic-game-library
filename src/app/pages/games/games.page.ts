@@ -81,12 +81,12 @@ export class GamesPage implements OnInit {
     this.loadGames();
   }
 
-  onDelete() {
+  onDelete(gameId: number) {
     this.presentAlert();
   }
 
   private loadGames() {
-   /* this.gamesId = this.authService.getLoggedUser().games;
+    /* this.gamesId = this.authService.getLoggedUser().games;
     const games: Game[] = [];
     this.gamesId.forEach(id => {
       this.service.loadGames(id).subscribe(res => games.push(res));
@@ -94,5 +94,4 @@ export class GamesPage implements OnInit {
     this.games = games;*/
     this.games = this.service.getAll();
   }
-
 }
