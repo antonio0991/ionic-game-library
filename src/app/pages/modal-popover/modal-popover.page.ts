@@ -20,11 +20,12 @@ export class ModalPopoverPage implements OnInit {
   public gameId: number;
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
-  constructor(public alertController: AlertController,
-              private modalCtrl: ModalController,
-              private gameService: GameService,
-              private userService: UserService,
-              private authService: AuthService,){}
+  constructor(
+    private modalCtrl: ModalController,
+    private gameService: GameService,
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
 
   async close() {
     const closeModal = 'Modal Closed';
@@ -32,10 +33,10 @@ export class ModalPopoverPage implements OnInit {
   }
 
   loadGames() {
-    this.gameService.getAll().subscribe( res => this.games = res);
+    this.gameService.getAll().subscribe((res) => (this.games = res));
   }
 
-  addUserGame(){
+  addUserGame() {
     this.authService.getLoggedUser().games.push(this.gameId);
     this.userService.editUser(this.authService.getLoggedUser());
     this.authService.setUser(this.authService.getLoggedUser().email);
@@ -44,10 +45,10 @@ export class ModalPopoverPage implements OnInit {
   }
 
   async presentAlert() {
-    const alert = await this.alertController.create({
+    const alert = await alertController.create({
       cssClass: 'my-custom-class',
       header: 'Jogo adicionado!',
-      message: 'O jogo está em sua biblioteca'
+      message: 'O jogo está em sua biblioteca',
     });
 
     await alert.present();

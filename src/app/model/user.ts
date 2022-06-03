@@ -22,14 +22,14 @@ export class User {
     dtNasc?: Date,
     nome?: string,
   ) {
-    this.id = id;
-    this.email = email;
-    this.senha = senha;
-    this.games = games;
-    this.cpf = cpf;
-    this.foto = foto;
-    this.endereco = endereco;
-    this.dtNasc = dtNasc;
-    this.nome = nome;
+    this.id = id || '';
+    this.email = email || '';
+    this.senha = senha || '';
+    this.games = games || [];
+    this.cpf = cpf || '';
+    this.foto = foto || '';
+    this.endereco = endereco || '';
+    this.dtNasc = dtNasc || new Date();
+    this.nome = nome || '';
   }
 }

@@ -10,7 +10,7 @@ import { UserService } from './user.service';
 })
 export class GameService{
 
-  resourceUrl : string = "http://localhost:3000/games/"
+  resourceUrl = 'http://localhost:3000/games/';
   games: Game[];
   usersId: number[];
   path = 'games/';
@@ -47,8 +47,8 @@ export class GameService{
     return this.firestore.collection(this.path).add(game);
   }
 
-  getAll() {
-    return this.firestore.collection(this.path).snapshotChanges();
+  getAll(): Observable<Game[]> {
+    return this.firestore.collection<Game>(this.path).valueChanges();
   }
 
   getGameById(gameId: string){

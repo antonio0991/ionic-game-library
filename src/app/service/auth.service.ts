@@ -8,14 +8,17 @@ import {
   getAuth,
 } from '@angular/fire/auth';
 import { User } from '../model/user';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  usuarioLogado: User;
+  usuarioLogado: User = new User();
   constructor(private auth: Auth, private userService: UserService) {
-    auth = getAuth();
+    auth.onAuthStateChanged((currentUser) => {
+      this.setUser(currentUser.email);
+    });
   }
 
   async register({ email, password }) {
@@ -34,17 +37,17 @@ export class AuthService {
   async login(email, password) {
     try {
       const user = await signInWithEmailAndPassword(this.auth, email, password);
-      this.setUser(email);
       return user;
     } catch (e) {
       return null;
     }
   }
 
-  setUser(email){
-    this.userService.getUserByEmail(email)
-    .subscribe((res) => this.usuarioLogado = res[0]);
-    this.setIdade();
+  async setUser(email) {
+    await this.userService.getUserByEmail(email).subscribe((res) => {
+      this.usuarioLogado = res[0];
+      this.setIdade();
+    });
   }
 
   setIdade() {

@@ -7,6 +7,7 @@ import { ModalController } from '@ionic/angular';
 import { ModalPopoverPage } from '../modal-popover/modal-popover.page';
 import { UserService } from 'src/app/service/user.service';
 import { GameFirebaseService } from 'src/app/service/shared/game-firebase.service';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-games',
@@ -15,8 +16,9 @@ import { GameFirebaseService } from 'src/app/service/shared/game-firebase.servic
 })
 export class GamesPage implements OnInit {
   modalDataResponse: any;
-  games;
+  games: Game[];
   gamesId: number[] = [];
+  userGames: Game[];
 
   constructor(
     private userService: UserService,
@@ -26,6 +28,10 @@ export class GamesPage implements OnInit {
     private gameFirebase: GameFirebaseService,
     private authService: AuthService
   ) {}
+
+  ngOnInit() {
+    this.loadGames();
+  }
 
   async onEdit(selectedGame: Game) {
     const modal = await this.modalCtrl.create({
@@ -77,21 +83,17 @@ export class GamesPage implements OnInit {
     const { role } = await alert.onDidDismiss();
   }
 
-  ngOnInit() {
-    this.loadGames();
-  }
-
   onDelete(gameId: number) {
     this.presentAlert();
   }
 
-  private loadGames() {
-    /* this.gamesId = this.authService.getLoggedUser().games;
-    const games: Game[] = [];
-    this.gamesId.forEach(id => {
-      this.service.loadGames(id).subscribe(res => games.push(res));
+  private async loadGames() {
+    const user: User = await this.authService.getLoggedUser();
+    console.log(user);
+    this.service.getAll().subscribe((games) => {
+      this.games = games;
+      this.gamesId = user.games;
+      this.userGames = this.gamesId.map((i) => this.games[i]);
     });
-    this.games = games;*/
-    this.games = this.service.getAll();
   }
 }

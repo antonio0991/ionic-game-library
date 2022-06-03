@@ -29,6 +29,8 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import { AuthService } from './service/auth.service';
+import { PERSISTENCE } from '@angular/fire/compat/auth';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -53,6 +55,7 @@ import { AuthService } from './service/auth.service';
     provideStorage(() => getStorage()),
   ],
   providers: [
+    { provide: PERSISTENCE, useValue: 'local' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig },
     MaskPipe, AuthService
