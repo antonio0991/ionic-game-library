@@ -37,7 +37,6 @@ export class ModalPopoverPage implements OnInit {
   }
 
   addUserGame() {
-    console.log(this.gameId)
     this.authService.getLoggedUser().games.push(this.gameId);
     this.userService.editUser(this.authService.getLoggedUser());
     this.authService.setUser(this.authService.getLoggedUser().email);

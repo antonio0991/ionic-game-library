@@ -56,7 +56,6 @@ export class GameService{
   }
 
   editGame(game: Game){
-    delete game.id;
     this.firestore.doc(this.path + game.id).update(game);
   }
 
