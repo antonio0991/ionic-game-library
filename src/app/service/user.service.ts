@@ -6,6 +6,8 @@ import { Game } from '../model/game';
 import { GameService } from '../service/game.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { user } from '@angular/fire/auth';
+import {v4 as uuidv4} from 'uuid';
 
 @Injectable({
   providedIn: 'root',
@@ -42,7 +44,8 @@ export class UserService {
   // }
 
   save(usuario: User){
-    return this.firestore.collection(this.path).add(usuario);
+    usuario.id = uuidv4();
+    return this.firestore.collection(this.path).doc(usuario.id).set(usuario);
   }
 
   getAll() {
@@ -54,8 +57,7 @@ export class UserService {
   }
 
   editUser(usuario: User){
-    delete usuario.id;
-    this.firestore.doc(this.path + usuario.id).update(usuario);
+    this.firestore.collection("users").doc(usuario.id).update(usuario);
   }
 
   deleteItem(userId: string){

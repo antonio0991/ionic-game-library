@@ -16,7 +16,7 @@ export class ModalPopoverPage implements OnInit {
   @Input() modalName;
   @Input() onSave;
 
-  public games;
+  public games: Game[];
   public gameId: number;
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -37,6 +37,7 @@ export class ModalPopoverPage implements OnInit {
   }
 
   addUserGame() {
+    console.log(this.gameId)
     this.authService.getLoggedUser().games.push(this.gameId);
     this.userService.editUser(this.authService.getLoggedUser());
     this.authService.setUser(this.authService.getLoggedUser().email);
@@ -58,5 +59,9 @@ export class ModalPopoverPage implements OnInit {
 
   ngOnInit() {
     this.loadGames();
+  }
+
+  selectId(id:number){
+    this.gameId = id;
   }
 }
