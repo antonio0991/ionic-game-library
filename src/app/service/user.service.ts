@@ -57,7 +57,7 @@ export class UserService {
   }
 
   editUser(usuario: User){
-    this.firestore.collection("users").doc(usuario.id).update(usuario);
+    this.firestore.collection(this.path).doc(usuario.id).update(usuario);
   }
 
   deleteItem(userId: string){

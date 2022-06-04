@@ -56,7 +56,7 @@ export class GameService{
   }
 
   editGame(game: Game){
-    this.firestore.doc(this.path + game.id).update(game);
+    this.firestore.collection(this.path).doc(game.id.toString()).update(game);
   }
 
   deleteItem(gameId: string){

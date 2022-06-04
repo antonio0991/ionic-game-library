@@ -14,7 +14,6 @@ import { Game } from '../../model/game';
 export class ModalPopoverPage implements OnInit {
   @Input() game: Game = new Game();
   @Input() modalName;
-  @Input() onSave;
 
   public games: Game[];
   public gameId: number;
@@ -60,7 +59,10 @@ export class ModalPopoverPage implements OnInit {
     this.loadGames();
   }
 
-  selectId(id:number){
-    this.gameId = id;
+  editGame(){
+    this.gameService.editGame(this.game);
+    this.presentAlert();
+    this.close();
   }
+
 }
